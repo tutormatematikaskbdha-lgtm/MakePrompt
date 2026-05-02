@@ -3,381 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generator Prompt Poster Pondok DHA</title>
+    <title>Generator Prompt Gambar</title>
     <style>
-        :root {
-            --primary-color: #1f5f2c;
-            --primary-hover: #2f7d32;
-            --bg-color: #f4f7f6;
-            --box-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #e0e0e0;
-        }
-
-        body {
+        * {
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+        }
+        body {
+            background-color: #f4f7f6;
+            color: #333;
             margin: 0;
             padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: var(--box-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .form-group {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
-
-        .form-group.full-width {
-            grid-column: span 2;
+        h2 {
+            color: #1f5f3a;
+            margin-bottom: 20px;
         }
-
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            gap: 20px;
+        }
+        .form-section, .result-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
         label {
-            font-weight: 600;
+            display: block;
+            font-weight: bold;
             margin-bottom: 5px;
+            color: #2c3e50;
             font-size: 14px;
-            color: #555;
         }
-
         input[type="text"], textarea {
+            width: 100%;
             padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-family: inherit;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             font-size: 14px;
-            transition: border-color 0.3s;
         }
-
-        input[type="text"]:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(31, 95, 44, 0.1);
-        }
-
         textarea {
             resize: vertical;
-            min-height: 80px;
+            height: 80px;
         }
-
-        .button-group {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
-        }
-
-        button {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s;
-        }
-
-        button:active {
-            transform: translateY(2px);
-        }
-
-        .btn-generate {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .btn-generate:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-download {
-            background-color: #f39c12;
-            color: white;
-        }
-
-        .btn-download:hover {
-            background-color: #d68910;
-        }
-
-        .preview-section {
-            margin-top: 30px;
-            border-top: 2px solid var(--border-color);
-            padding-top: 20px;
-        }
-
-        #outputPreview {
+        .result-box {
             width: 100%;
-            min-height: 300px;
-            background-color: #f8f9fa;
-            border: 1px solid #ced4da;
+            height: calc(100% - 60px);
             padding: 15px;
-            border-radius: 6px;
+            background: #2b2b2b;
+            color: #f8f8f2;
+            border: none;
+            border-radius: 4px;
             font-family: monospace;
             font-size: 13px;
             line-height: 1.5;
-            box-sizing: border-box;
-            white-space: pre-wrap;
+            resize: none;
         }
-
-        /* Responsif untuk layar HP */
-        @media (max-width: 600px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .form-group.full-width {
-                grid-column: span 1;
-            }
-            .button-group {
+        .btn-copy {
+            background-color: #1f5f3a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            width: 100%;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-copy:hover {
+            background-color: #144026;
+        }
+        @media (max-width: 768px) {
+            .container {
                 flex-direction: column;
-            }
-            button {
-                width: 100%;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Generator Prompt Poster</h1>
-    
-    <div class="form-grid">
-        <div class="form-group full-width">
-            <label>1. Judul Utama (TITLE)</label>
-            <input type="text" id="t_title" value="TANDA SESEORANG LEMAH AKALNYA">
+    <h2>Generator Prompt Poster</h2>
+
+    <div class="container">
+        <!-- Bagian Form Input -->
+        <div class="form-section">
+            <div class="form-group">
+                <label>Judul Utama:</label>
+                <input type="text" id="JUDUL_UTAMA" value="TANDA SESEORANG LEMAH AKALNYA">
+            </div>
+            <div class="form-group">
+                <label>Sumber Penulis:</label>
+                <input type="text" id="SUMBER_PENULIS" value="Ibnu Abdil Barr rahimahullah berkata">
+            </div>
+            <div class="form-group">
+                <label>Isi Kutipan:</label>
+                <textarea id="ISI_KUTIPAN">Kekaguman seseorang kepada dirinya sendiri itu tanda kelemahan akalnya</textarea>
+            </div>
+            <div class="form-group">
+                <label>Sumber Kitab:</label>
+                <input type="text" id="SUMBER_KITAB" value="Jami’ bayanil Ilmi wa fadhli 1/143">
+            </div>
+            <div class="form-group">
+                <label>Hari:</label>
+                <input type="text" id="HARI" value="SABTU">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Hijriah:</label>
+                <input type="text" id="TANGGAL_HIJRI" value="14 Dzulqa’dah 1447 H">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Masehi:</label>
+                <input type="text" id="TANGGAL_MASEHI" value="02 Mei 2026 M">
+            </div>
+            <div class="form-group">
+                <label>Ajakan Sedekah:</label>
+                <textarea id="AJAKAN_SEDEKAH" style="height: 100px;">Sedekah tidak mesti dengan Uang, Sampah Rongsokpun bila diniatkan ikhlas bisa jadi ladang Amal. Tim Rongsok siap menjemput ketempat Njenengan, Mari bersedekah Rongsok untuk membantu keuangan Pondok DHA, lingkungan bersih Pahala didapat</textarea>
+            </div>
+            <div class="form-group">
+                <label>Nama Program:</label>
+                <input type="text" id="NAMA_PROGRAM" value="RONGSOK BERKAH BERNILAI JARIYAH PONDOK DHA">
+            </div>
+            <div class="form-group">
+                <label>Nama Kontak:</label>
+                <input type="text" id="NAMA_KONTAK" value="Babe Hasan">
+            </div>
+            <div class="form-group">
+                <label>No HP:</label>
+                <input type="text" id="NO_HP" value="0852 1891 4533">
+            </div>
         </div>
 
-        <div class="form-group full-width">
-            <label>2. Subjudul (SUBTITLE)</label>
-            <input type="text" id="t_subtitle" value="Ibnu Abdil Barr rahimahullah berkata">
-        </div>
-
-        <div class="form-group full-width">
-            <label>3. Isi Kutipan (QUOTE BOX)</label>
-            <textarea id="t_quote">"Kekaguman seseorang kepada dirinya sendiri itu tanda kelemahan akalnya"</textarea>
-        </div>
-
-        <div class="form-group full-width">
-            <label>4. Referensi (REFERENCE)</label>
-            <input type="text" id="t_reference" value="Jami’ bayanil Ilmi wa fadhli 1/143">
-        </div>
-
-        <div class="form-group full-width">
-            <label>5. Hari (DAY)</label>
-            <input type="text" id="t_day" value="SABTU">
-        </div>
-
-        <div class="form-group">
-            <label>6. Tanggal Kiri (DATE LEFT)</label>
-            <input type="text" id="t_date_left" value="14 Dzulqa’dah 1447 H">
-        </div>
-
-        <div class="form-group">
-            <label>7. Tanggal Kanan (DATE RIGHT)</label>
-            <input type="text" id="t_date_right" value="02 Mei 2026 M">
-        </div>
-
-        <div class="form-group full-width">
-            <label>8. Deskripsi (DESCRIPTION)</label>
-            <textarea id="t_description">Mari bersedekah Rongsok untuk membantu keuangan Pondok DHA, lingkungan bersih Pahala didapat</textarea>
-        </div>
-
-        <div class="form-group full-width">
-            <label>9. Highlight Banner (HIGHLIGHT)</label>
-            <input type="text" id="t_highlight" value="RONGSOK BERKAH BERNILAI JARIYAH PONDOK DHA">
-        </div>
-
-        <div class="form-group full-width">
-            <label>10. Kontak (CONTACT)</label>
-            <input type="text" id="t_contact" value="Babe Hasan 0852 1891 4533">
-        </div>
-
-        <div class="form-group full-width">
-            <label>11. Catatan Kaki (FOOTNOTE)</label>
-            <textarea id="t_footnote">Sedekah tidak mesti dengan Uang, Sampah Rongsokpun bila di niatkan ikhlas bisa jadi ladang Amal. Tim Rongsok siap menjemput ketempat Njenengan</textarea>
+        <!-- Bagian Hasil -->
+        <div class="result-section">
+            <button class="btn-copy" onclick="copyResult()">📋 Copy Hasil Prompt</button>
+            <textarea id="resultOutput" class="result-box" readonly></textarea>
         </div>
     </div>
 
-    <div class="button-group">
-        <button class="btn-generate" onclick="generatePrompt()">⚙️ Generate Prompt</button>
-        <button class="btn-download" onclick="downloadTxt()" id="btnDownload" style="display: none;">💾 Download .txt</button>
-    </div>
+    <script>
+        // Template dasar prompt
+        const template = `Create a highly detailed Islamic poster design, vertical 9:16 aspect ratio, ultra realistic yet slightly stylized illustration.
 
-    <div class="preview-section">
-        <label>Preview Prompt (Bisa diedit manual sebelum di-download):</label>
-        <textarea id="outputPreview" placeholder="Hasil prompt akan muncul di sini..."></textarea>
-    </div>
-</div>
+BACKGROUND (DO NOT CHANGE):
+A warm, serene tropical courtyard scene in golden morning sunlight. Large leafy trees frame the top left and right, with sunlight rays filtering through leaves (god rays). Soft bokeh light particles floating in the air. On the bottom: a traditional Indonesian Islamic building (pesantren style), white pillars, classic architecture, brown tiled roof, surrounded by lush greenery and flowers. Atmosphere peaceful, spiritual, calm. Lighting cinematic, warm tone, golden hour.
+Use the uploaded image as reference. Maintain strong resemblance.
 
-<script>
-    // Menyimpan template dasar
-    function getTemplate() {
-        return `A highly detailed Islamic poster design, vertical composition, aspect ratio 9:16. 
-Theme: spiritual, peaceful, natural Islamic aesthetic.
-BACKGROUND:
-A warm, golden-hour tropical garden scene with sunlight rays filtering through lush green trees.
-Foreground top area framed by leafy branches on the left and right, with soft bokeh light particles floating.
-Include palm leaves on the right side and dense foliage on left.
-Lighting is cinematic, soft glow, warm sunlight with volumetric light beams.
-BOTTOM SECTION:
-A traditional Indonesian Islamic boarding school (pondok pesantren) building with classic architecture:
-white pillars, brown tiled roof, symmetrical structure, wide stairs, Indonesian flag in front.
-Surrounded by greenery, grass, small flowers, and soft morning light.
-Perspective slightly low angle, giving grandeur.
-MAIN LAYOUT (CENTERED, STACKED VERTICALLY):
+Foreground uses layered clean UI-style panels with soft rounded corners and subtle shadows.
 
-"[TEXT_1_TITLE]"
-Large bold headline at top center:
-Font style: rounded bold display font, smooth curves (similar to Baloo / Poppins ExtraBold rounded).
-Color: dark green gradient (#1f5f2c to #2f7d32).
-Text effect: subtle white outline + soft drop shadow.
-Letter spacing slightly expanded.
-Placement: upper third center.
+COLOR STYLE:
+Dominant colors: deep green, cream/beige, warm gold sunlight
+Accent: dark forest green (#1f5f3a), soft cream (#f4ecd8)
+Soft gradients, elegant Islamic aesthetic
 
-"[TEXT_2_SUBTITLE]"
-Small label below title inside rounded capsule shape:
-Capsule color: dark green solid.
-Text color: white.
-Font: clean sans-serif medium weight.
-Centered.
+TYPOGRAPHY LAYOUT (VERY IMPORTANT):
 
-"[TEXT_3_QUOTE_BOX]"
-A rounded rectangle box in the center:
-Background color: soft cream / light beige.
-Border: thin dark green.
-Inside is a quote text:
-Font: serif or humanist sans-serif, medium weight.
-Color: dark green.
-Text aligned center.
-Include quotation marks.
-Add subtle inner shadow and soft glow.
+[HEADER TITLE - PLACEHOLDER_1]
+Text: "{{JUDUL_UTAMA}}"
+Style:
+- Bold rounded sans-serif (similar to Poppins ExtraBold / Baloo / Nunito ExtraBold)
+- Color: deep green with subtle white outline
+- Slight 3D emboss effect
+- All caps
+- Large size (~10-12% of canvas height)
+- Center aligned
+- Add small decorative leaf ornaments on left & right
 
-"[TEXT_4_REFERENCE]"
-Small reference text under quote:
-Font: small sans-serif.
-Color: darker green.
-Include small book icon to the left.
+[SUBTITLE LABEL]
+Text: "{{SUMBER_PENULIS}}"
+Example: Ibnu Abdil Barr rahimahullah berkata
+Style:
+- Smaller pill-shaped label
+- Background: dark green
+- Text: white
+- Font: medium sans-serif (Poppins Medium)
+- Centered
 
-"[TEXT_5_DAY]"
-Large bold day text:
-Font: bold sans-serif, uppercase.
-Color: dark green.
-Placed in a separate rounded box.
+[QUOTE BOX - PLACEHOLDER_2]
+Text: "{{ISI_KUTIPAN}}"
+Style:
+- Inside rounded rectangle box
+- Background: soft cream
+- Border: thin green stroke
+- Font: clean sans-serif (Poppins / Open Sans)
+- Weight: Medium to SemiBold
+- Size: medium-large (~5-6% canvas height)
+- Line spacing slightly wide
+- Center aligned
+- Add quotation marks
 
-"[TEXT_6_DATE_LEFT]" and "[TEXT_7_DATE_RIGHT]"
-Two date fields side by side with icons:
-Left: Hijri date
-Right: Gregorian date
-Font: clean sans-serif.
-Include small calendar icons.
+[REFERENCE LABEL]
+Text: "{{SUMBER_KITAB}}"
+Example: Jami’ bayanil Ilmi wa fadhli 1/143
+Style:
+- Small pill label under quote
+- Background: dark green
+- Text: white
+- Include small book icon
 
-"[TEXT_8_DESCRIPTION]"
-Small paragraph text:
-Font: regular sans-serif.
-Color: dark green.
-Centered, multi-line.
+[DAY SECTION - PLACEHOLDER_3]
+Text: "{{HARI}}"
+Example: SABTU
+Style:
+- VERY LARGE bold text (~8-10% height)
+- Dark green color
+- With mosque icon on left inside circular badge
 
-"[TEXT_9_HIGHLIGHT]"
-Highlighted donation banner:
-Rounded capsule with bold text.
-Color: dark green background, white text.
+[DATE SECTION - PLACEHOLDER_4 & 5]
+Text:
+"{{TANGGAL_HIJRI}}   |   {{TANGGAL_MASEHI}}"
+Style:
+- Smaller than day
+- Icons: calendar icons before each date
+- Clean sans-serif regular
+- Color: dark green
 
-"[TEXT_10_CONTACT]"
-Contact line with icon:
-Include circular icon placeholder.
-Font: medium sans-serif.
+[CALL TO ACTION TEXT]
+Text: "{{AJAKAN_SEDEKAH}}"
+Style:
+- Small paragraph
+- Center aligned
+- Dark green text
+- Regular weight
 
-"[TEXT_11_FOOTNOTE]"
-Small bottom text:
-Font: small, readable sans-serif.
-Color: slightly faded green.
+[MAIN CTA BUTTON]
+Text: "{{NAMA_PROGRAM}}"
+Example: RONGSOK BERKAH BERNILAI JARIYAH PONDOK DHA
+Style:
+- Rounded capsule button
+- Dark green background
+- White bold text
+- Medium-large size
 
-STYLE:
-Ultra clean layout, modern Islamic poster style.
-Soft shadows, subtle gradients, rounded UI elements.
-No clutter, perfect spacing and hierarchy.
-Highly polished, print-ready, high resolution, 4K.
---ar 9:16 --v 6 --style raw --q 2`;
-    }
+[CONTACT SECTION - PLACEHOLDER_6]
+Text: "{{NAMA_KONTAK}} {{NO_HP}}"
+Style:
+- Rounded pill
+- Light background with green border
+- Include user icon on left
 
-    function generatePrompt() {
-        let template = getTemplate();
-        
-        // Mengambil value dari input
-        const replacements = {
-            "[TEXT_1_TITLE]": document.getElementById('t_title').value,
-            "[TEXT_2_SUBTITLE]": document.getElementById('t_subtitle').value,
-            "[TEXT_3_QUOTE_BOX]": document.getElementById('t_quote').value.replace(/"/g, ''), // Hapus tanda kutip agar tidak double
-            "[TEXT_4_REFERENCE]": document.getElementById('t_reference').value,
-            "[TEXT_5_DAY]": document.getElementById('t_day').value,
-            "[TEXT_6_DATE_LEFT]": document.getElementById('t_date_left').value,
-            "[TEXT_7_DATE_RIGHT]": document.getElementById('t_date_right').value,
-            "[TEXT_8_DESCRIPTION]": document.getElementById('t_description').value,
-            "[TEXT_9_HIGHLIGHT]": document.getElementById('t_highlight').value,
-            "[TEXT_10_CONTACT]": document.getElementById('t_contact').value,
-            "[TEXT_11_FOOTNOTE]": document.getElementById('t_footnote').value
-        };
+VISUAL STYLE:
+- Clean hierarchy
+- Soft drop shadows on panels
+- Consistent spacing
+- Islamic minimal modern design
+- High readability
+- Balanced composition (top text, middle quote, bottom building)
 
-        // Melakukan find & replace untuk setiap tag
-        for (const [key, value] of Object.entries(replacements)) {
-            // Mengganti teks dengan format literal agar mudah dibaca AI (ditambah tanda kutip)
-            template = template.replace(key, value);
+QUALITY:
+Ultra high resolution, 4K, sharp details, professional poster design, cinematic lighting, soft glow, depth of field
+
+IMPORTANT:
+Keep layout identical, only text changes
+Do not change background composition
+Maintain exact visual structure
+
+--ar 9:16`;
+
+        // Daftar ID input yang sesuai dengan variabel di template
+        const inputsId = [
+            "JUDUL_UTAMA", "SUMBER_PENULIS", "ISI_KUTIPAN", "SUMBER_KITAB",
+            "HARI", "TANGGAL_HIJRI", "TANGGAL_MASEHI", "AJAKAN_SEDEKAH",
+            "NAMA_PROGRAM", "NAMA_KONTAK", "NO_HP"
+        ];
+
+        // Fungsi untuk menggenerate hasil
+        function generatePrompt() {
+            let resultText = template;
+            
+            inputsId.forEach(id => {
+                const value = document.getElementById(id).value;
+                const regex = new RegExp(`{{${id}}}`, 'g');
+                resultText = resultText.replace(regex, value);
+            });
+
+            document.getElementById('resultOutput').value = resultText;
         }
 
-        // Menampilkan ke layar
-        const outputArea = document.getElementById('outputPreview');
-        outputArea.value = template;
-        
-        // Menampilkan tombol download
-        document.getElementById('btnDownload').style.display = 'inline-block';
-    }
-
-    function downloadTxt() {
-        const textToSave = document.getElementById('outputPreview').value;
-        if (!textToSave) {
-            alert("Silakan Generate Prompt terlebih dahulu!");
-            return;
+        // Fungsi untuk copy ke clipboard
+        function copyResult() {
+            const resultBox = document.getElementById('resultOutput');
+            resultBox.select();
+            resultBox.setSelectionRange(0, 99999); // Untuk mobile
+            navigator.clipboard.writeText(resultBox.value).then(() => {
+                const btn = document.querySelector('.btn-copy');
+                const originalText = btn.innerText;
+                btn.innerText = "✅ Tersalin!";
+                btn.style.backgroundColor = "#27ae60";
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = "#1f5f3a";
+                }, 2000);
+            });
         }
 
-        // Membuat file Blob
-        const blob = new Blob([textToSave], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
-        
-        // Format penamaan file otomatis berdasarkan hari dan tanggal
-        const hari = document.getElementById('t_day').value;
-        const filename = `Prompt_Poster_DHA_${hari}.txt`;
+        // Tambahkan event listener agar hasil langsung berubah saat diketik
+        inputsId.forEach(id => {
+            document.getElementById(id).addEventListener('input', generatePrompt);
+        });
 
-        // Proses trigger download
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        
-        // Membersihkan URL setelah di-download
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
-</script>
-
+        // Generate pertama kali saat halaman dimuat
+        window.onload = generatePrompt;
+    </script>
 </body>
 </html>
